@@ -656,13 +656,6 @@ The `chroma_db` directory must be writable. In Docker, it's mounted as a volume.
 - File type validation on uploads
 - User-scoped document access
 
-## License
-
-[Add your license here]
-
-## Contributing
-
-[Add contribution guidelines here]
 
 ## Support
 
