@@ -1,0 +1,13 @@
+__pycache__
+.venv
+.env
+test.pdf
+db
+chroma_db/
+db/
+rag/db/
+rag/archives/
+rag/evaluation_results/
+rag/hybrid-rag/db
+rag/rag-with-reranking/db
+

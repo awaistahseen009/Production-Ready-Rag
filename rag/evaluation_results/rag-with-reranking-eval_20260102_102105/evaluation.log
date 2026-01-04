@@ -1,0 +1,74 @@
+2026-01-02 10:21:05,899 - INFO - Starting evaluation run: rag-with-reranking-eval
+2026-01-02 10:21:05,902 - INFO - Results will be saved to: C:\Users\Awais\Desktop\RAG_Stuff\Fastapi-t\rag\evaluation_results\rag-with-reranking-eval_20260102_102105
+2026-01-02 10:21:05,902 - INFO - Starting retrieval evaluation...
+2026-01-02 10:40:30,382 - INFO - Retrieval Evaluation Complete: 323 tests
+2026-01-02 10:40:30,382 - INFO - Overall MRR: 0.6283
+2026-01-02 10:40:30,382 - INFO - Overall nDCG: 0.6406
+2026-01-02 10:40:30,384 - INFO - Overall Keyword Coverage: 76.2%
+2026-01-02 10:40:30,384 - INFO - Category 'direct_fact' MRR: 0.6628 (n=73)
+2026-01-02 10:40:30,384 - INFO - Category 'numerical' MRR: 0.7860 (n=69)
+2026-01-02 10:40:30,384 - INFO - Category 'temporal' MRR: 0.5368 (n=31)
+2026-01-02 10:40:30,385 - INFO - Category 'comparative' MRR: 0.5977 (n=38)
+2026-01-02 10:40:30,385 - INFO - Category 'holistic' MRR: 0.5027 (n=40)
+2026-01-02 10:40:30,385 - INFO - Category 'relationship' MRR: 0.6741 (n=29)
+2026-01-02 10:40:30,385 - INFO - Category 'spanning' MRR: 0.4956 (n=43)
+2026-01-02 10:40:31,771 - INFO - Starting answer evaluation...
+2026-01-02 11:37:29,439 - INFO - Answer Evaluation Complete: 323 tests
+2026-01-02 11:37:29,439 - INFO - Overall Accuracy: 4.412/5
+2026-01-02 11:37:29,439 - INFO - Overall Completeness: 3.929/5
+2026-01-02 11:37:29,439 - INFO - Overall Relevance: 4.601/5
+2026-01-02 11:37:29,439 - INFO - Overall Faithfulness: 4.424/5
+2026-01-02 11:37:29,439 - INFO - Overall Context Relevance: 4.647/5
+2026-01-02 11:37:29,439 - INFO - Overall Context Utilization: 4.139/5
+2026-01-02 11:37:29,439 - INFO - Overall Unsupported Claims (avg): 0.54
+2026-01-02 11:37:29,439 - INFO - Category 'direct_fact' Accuracy: 4.384/5 (n=73)
+2026-01-02 11:37:29,439 - INFO - Category 'direct_fact' Completeness: 4.000/5
+2026-01-02 11:37:29,439 - INFO - Category 'direct_fact' Relevance: 4.630/5
+2026-01-02 11:37:29,439 - INFO - Category 'direct_fact' Faithfulness: 4.384/5
+2026-01-02 11:37:29,439 - INFO - Category 'direct_fact' Context Relevance: 4.795/5
+2026-01-02 11:37:29,439 - INFO - Category 'direct_fact' Context Utilization: 4.219/5
+2026-01-02 11:37:29,439 - INFO - Category 'direct_fact' Avg Unsupported Claims: 0.44
+2026-01-02 11:37:29,439 - INFO - Category 'numerical' Accuracy: 4.754/5 (n=69)
+2026-01-02 11:37:29,439 - INFO - Category 'numerical' Completeness: 4.493/5
+2026-01-02 11:37:29,439 - INFO - Category 'numerical' Relevance: 4.841/5
+2026-01-02 11:37:29,439 - INFO - Category 'numerical' Faithfulness: 4.768/5
+2026-01-02 11:37:29,439 - INFO - Category 'numerical' Context Relevance: 4.870/5
+2026-01-02 11:37:29,446 - INFO - Category 'numerical' Context Utilization: 4.623/5
+2026-01-02 11:37:29,446 - INFO - Category 'numerical' Avg Unsupported Claims: 0.28
+2026-01-02 11:37:29,446 - INFO - Category 'temporal' Accuracy: 4.226/5 (n=31)
+2026-01-02 11:37:29,446 - INFO - Category 'temporal' Completeness: 3.387/5
+2026-01-02 11:37:29,446 - INFO - Category 'temporal' Relevance: 4.419/5
+2026-01-02 11:37:29,446 - INFO - Category 'temporal' Faithfulness: 4.258/5
+2026-01-02 11:37:29,448 - INFO - Category 'temporal' Context Relevance: 4.387/5
+2026-01-02 11:37:29,448 - INFO - Category 'temporal' Context Utilization: 3.806/5
+2026-01-02 11:37:29,448 - INFO - Category 'temporal' Avg Unsupported Claims: 0.58
+2026-01-02 11:37:29,448 - INFO - Category 'comparative' Accuracy: 4.500/5 (n=38)
+2026-01-02 11:37:29,449 - INFO - Category 'comparative' Completeness: 3.789/5
+2026-01-02 11:37:29,449 - INFO - Category 'comparative' Relevance: 4.658/5
+2026-01-02 11:37:29,449 - INFO - Category 'comparative' Faithfulness: 4.605/5
+2026-01-02 11:37:29,449 - INFO - Category 'comparative' Context Relevance: 4.579/5
+2026-01-02 11:37:29,449 - INFO - Category 'comparative' Context Utilization: 4.053/5
+2026-01-02 11:37:29,450 - INFO - Category 'comparative' Avg Unsupported Claims: 0.37
+2026-01-02 11:37:29,450 - INFO - Category 'holistic' Accuracy: 4.250/5 (n=40)
+2026-01-02 11:37:29,450 - INFO - Category 'holistic' Completeness: 3.675/5
+2026-01-02 11:37:29,450 - INFO - Category 'holistic' Relevance: 4.425/5
+2026-01-02 11:37:29,451 - INFO - Category 'holistic' Faithfulness: 4.175/5
+2026-01-02 11:37:29,451 - INFO - Category 'holistic' Context Relevance: 4.525/5
+2026-01-02 11:37:29,451 - INFO - Category 'holistic' Context Utilization: 3.850/5
+2026-01-02 11:37:29,451 - INFO - Category 'holistic' Avg Unsupported Claims: 0.95
+2026-01-02 11:37:29,452 - INFO - Category 'relationship' Accuracy: 4.345/5 (n=29)
+2026-01-02 11:37:29,452 - INFO - Category 'relationship' Completeness: 3.793/5
+2026-01-02 11:37:29,452 - INFO - Category 'relationship' Relevance: 4.483/5
+2026-01-02 11:37:29,453 - INFO - Category 'relationship' Faithfulness: 4.310/5
+2026-01-02 11:37:29,453 - INFO - Category 'relationship' Context Relevance: 4.517/5
+2026-01-02 11:37:29,453 - INFO - Category 'relationship' Context Utilization: 3.966/5
+2026-01-02 11:37:29,453 - INFO - Category 'relationship' Avg Unsupported Claims: 0.59
+2026-01-02 11:37:29,453 - INFO - Category 'spanning' Accuracy: 4.163/5 (n=43)
+2026-01-02 11:37:29,453 - INFO - Category 'spanning' Completeness: 3.744/5
+2026-01-02 11:37:29,454 - INFO - Category 'spanning' Relevance: 4.488/5
+2026-01-02 11:37:29,454 - INFO - Category 'spanning' Faithfulness: 4.209/5
+2026-01-02 11:37:29,454 - INFO - Category 'spanning' Context Relevance: 4.488/5
+2026-01-02 11:37:29,455 - INFO - Category 'spanning' Context Utilization: 3.930/5
+2026-01-02 11:37:29,455 - INFO - Category 'spanning' Avg Unsupported Claims: 0.86
+2026-01-02 11:37:32,856 - INFO - All evaluations completed!
+2026-01-02 11:37:32,856 - INFO - All results and graphs saved in: C:\Users\Awais\Desktop\RAG_Stuff\Fastapi-t\rag\evaluation_results\rag-with-reranking-eval_20260102_102105

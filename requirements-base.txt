@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+pydantic
+sentence-transformers
+huggingface-hub
+openai
+langchain
+langchain-community
+langgraph
+langchain-cohere
+langchain-text-splitters
+langchain-classic
+modal
+torch

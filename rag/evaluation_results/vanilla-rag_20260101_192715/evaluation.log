@@ -1,0 +1,25 @@
+2026-01-01 19:27:15,560 - INFO - Starting evaluation run: vanilla-rag
+2026-01-01 19:27:15,560 - INFO - Results will be saved to: C:\Users\Awais\Desktop\RAG_Stuff\Fastapi-t\rag\evaluation_results\vanilla-rag_20260101_192715
+2026-01-01 19:27:15,560 - INFO - Starting retrieval evaluation...
+2026-01-01 19:30:55,783 - INFO - Retrieval Evaluation Complete: 323 tests
+2026-01-01 19:30:55,784 - INFO - Overall MRR: 0.5661
+2026-01-01 19:30:55,784 - INFO - Overall nDCG: 0.5857
+2026-01-01 19:30:55,785 - INFO - Overall Keyword Coverage: 73.6%
+2026-01-01 19:30:55,785 - INFO - Category 'direct_fact' MRR: 0.5734 (n=73)
+2026-01-01 19:30:55,785 - INFO - Category 'numerical' MRR: 0.6792 (n=69)
+2026-01-01 19:30:55,787 - INFO - Category 'temporal' MRR: 0.4892 (n=31)
+2026-01-01 19:30:55,787 - INFO - Category 'comparative' MRR: 0.5422 (n=38)
+2026-01-01 19:30:55,787 - INFO - Category 'holistic' MRR: 0.4523 (n=40)
+2026-01-01 19:30:55,787 - INFO - Category 'relationship' MRR: 0.6193 (n=29)
+2026-01-01 19:30:55,787 - INFO - Category 'spanning' MRR: 0.5188 (n=43)
+2026-01-01 19:30:57,065 - INFO - Starting answer evaluation...
+2026-01-01 20:34:16,789 - INFO - Answer Evaluation Complete: 323 tests
+2026-01-01 20:34:16,799 - INFO - Overall Accuracy: 4.440/5
+2026-01-01 20:34:16,799 - INFO - Overall Completeness: 4.074/5
+2026-01-01 20:34:16,799 - INFO - Overall Relevance: 4.607/5
+2026-01-01 20:34:16,799 - INFO - Overall Faithfulness: 4.415/5
+2026-01-01 20:34:16,799 - INFO - Overall Context Relevance: 4.604/5
+2026-01-01 20:34:16,799 - INFO - Overall Context Utilization: 4.180/5
+2026-01-01 20:34:16,799 - INFO - Overall Unsupported Claims (avg): 0.59
+2026-01-01 20:34:19,744 - INFO - All evaluations completed!
+2026-01-01 20:34:19,744 - INFO - All results and graphs saved in: C:\Users\Awais\Desktop\RAG_Stuff\Fastapi-t\rag\evaluation_results\vanilla-rag_20260101_192715

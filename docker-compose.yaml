@@ -1,0 +1,47 @@
+services:
+  app:
+    build: .
+    container_name: rag_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - elasticsearch
+    volumes:
+      - ./chroma_db:/app/chroma_db
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: rag_redis
+    command: redis-server --save 60 1 --loglevel warning
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.2
+    container_name: rag_elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+    networks:
+      - app-network
+
+volumes:
+  redis_data:
+  es_data:
+
+networks:
+  app-network:
+    driver: bridge
