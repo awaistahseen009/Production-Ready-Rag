@@ -7,8 +7,49 @@ services:
     depends_on:
       - redis
       - elasticsearch
-    volumes:
-      - ./chroma_db:/app/chroma_db
+      - chroma
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+      - ELASTIC_URL=http://rag_elasticsearch:9200
+      - REDIS_URL=redis://rag_redis:6379/0
+      - REDIS_RESULT_BACKEND=redis://rag_redis:6379/1
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_ALGORITHM=${JWT_ALGORITHM}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - SUPABASE_BUCKET=${SUPABASE_BUCKET}
+      - MODAL_RERANKER_URL=${MODAL_RERANKER_URL}
+      - COHERE_API_KEY=${COHERE_API_KEY}
+      - CHROMA_SERVER_URL=http://rag_chroma:8000
+      - CHROMA_SERVER_PORT=8001
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  worker:
+    build: .
+    container_name: rag_worker
+    depends_on:
+      - redis
+      - elasticsearch
+      - chroma
+    command: celery -A app.core.celery.celery_app:celery_app worker -l info --pool=solo
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+      - ELASTIC_URL=http://rag_elasticsearch:9200
+      - REDIS_URL=redis://rag_redis:6379/0
+      - REDIS_RESULT_BACKEND=redis://rag_redis:6379/1
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_ALGORITHM=${JWT_ALGORITHM}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - SUPABASE_BUCKET=${SUPABASE_BUCKET}
+      - MODAL_RERANKER_URL=${MODAL_RERANKER_URL}
+      - COHERE_API_KEY=${COHERE_API_KEY}
+      - CHROMA_SERVER_URL=http://rag_chroma:8000
+      - CHROMA_SERVER_PORT=8001
     restart: unless-stopped
     networks:
       - app-network
@@ -29,7 +70,14 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
-      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
     ports:
       - "9200:9200"
     volumes:
@@ -38,9 +86,24 @@ services:
     networks:
       - app-network
 
+  chroma:
+    image: chromadb/chroma:latest
+    container_name: rag_chroma
+    ports:
+      - "8001:8000"
+    environment:
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=TRUE
+    volumes:
+      - chroma_data:/chroma/chroma
+    restart: unless-stopped
+    networks:
+      - app-network
+
 volumes:
   redis_data:
   es_data:
+  chroma_data:
 
 networks:
   app-network:
