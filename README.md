@@ -578,6 +578,107 @@ production-ready-rag/
 
 ## Development
 
+### Testing & Evaluation Framework
+
+The project includes a comprehensive evaluation system to benchmark RAG performance across 323 test cases.
+
+#### Test Dataset Format
+
+Tests are stored in `rag/test.jsonl` (JSONL format - one JSON object per line). Each test case contains:
+
+```json
+{
+  "question": "What is the core innovation of AR-RAG in image generation?",
+  "keywords": ["AR-RAG", "patch-level", "autoregressive", "retrieval"],
+  "reference_answer": "AR-RAG introduces patch-level autoregressive retrieval...",
+  "category": "direct_fact"
+}
+```
+
+**Fields:**
+- `question`: The query to test the RAG system
+- `keywords`: List of terms that should appear in retrieved context (for retrieval evaluation)
+- `reference_answer`: Ground truth answer for comparison (for answer quality evaluation)
+- `category`: Question type (direct_fact, temporal, numerical, spanning, holistic, relationship)
+
+#### Running Full Evaluation Suite
+
+To evaluate all 323 test cases and generate comprehensive reports:
+
+```bash
+# Run complete evaluation with custom name
+python rag/run_tests.py --run_name "my-rag-experiment"
+```
+
+This will:
+1. **Evaluate Retrieval Performance**:
+   - Calculate MRR (Mean Reciprocal Rank) for each test
+   - Calculate nDCG (Normalized Discounted Cumulative Gain)
+   - Measure keyword coverage in top-k retrieved chunks
+   - Aggregate metrics by category
+
+2. **Evaluate Answer Quality**:
+   - Generate answers using the RAG pipeline
+   - Use LLM-as-judge (GPT-4.1-nano) to score answers on 7 dimensions
+   - Compare against reference answers
+   - Track unsupported claims (hallucinations)
+
+3. **Generate Outputs**:
+   - CSV summaries (`summary.csv`, `per_category.csv`)
+   - Interactive Plotly HTML charts
+   - Static matplotlib PNG/PDF charts
+   - Detailed logs (`evaluation.log`)
+
+Results are saved to: `rag/evaluation_results/<run_name>_<timestamp>/`
+
+#### Evaluation Metrics Explained
+
+**Retrieval Metrics:**
+- **MRR (Mean Reciprocal Rank)**: Measures how quickly the first relevant document appears (1/rank). Higher is better.
+- **nDCG (Normalized DCG)**: Weighted ranking metric that rewards relevant docs at top positions. Range: 0-1.
+- **Keyword Coverage**: Percentage of expected keywords found in top-k retrieved chunks.
+
+**Answer Quality Metrics (1-5 scale):**
+- **Accuracy**: Factual correctness vs reference answer
+- **Completeness**: Coverage of all required information
+- **Relevance**: How directly the answer addresses the question
+- **Faithfulness**: Are claims supported by retrieved context? (anti-hallucination metric)
+- **Context Relevance**: Quality of retrieved context for the question
+- **Context Utilization**: Did the answer meaningfully use the context?
+- **Unsupported Claims**: Count of hallucinated statements (lower is better)
+
+#### Single Test Evaluation
+
+To debug or inspect a specific test case:
+
+```bash
+# Evaluate test case at index 5
+python rag/evaluate.py 5
+```
+
+This provides detailed output including:
+- Question and reference answer
+- Retrieved context chunks
+- Generated answer
+- All evaluation scores with feedback
+
+#### Document Ingestion for Testing
+
+The evaluation uses a pre-ingested document corpus. To re-ingest documents:
+
+```bash
+# Ingest PDFs from data/papers/ directory
+python rag/ingest.py
+```
+
+This script:
+1. Loads all PDFs from `../data/papers/`
+2. Splits into 1000-char chunks with 300-char overlap
+3. Generates embeddings using OpenAI `text-embedding-3-small`
+4. Stores in ChromaDB at `rag/db/chroma_files/`
+
+**Note**: The evaluation framework uses a separate ChromaDB instance (`rag/db/chroma_files/`) from the production app (`chroma_db/`).
+
 ### Running Evaluations
 
 ```bash
